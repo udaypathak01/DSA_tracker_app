@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DSA Tracker Pro 📚
 
 A comprehensive React.js web application for students to track their DSA sheet progress for placement preparation.
@@ -169,3 +170,6 @@ Open source - Free for personal/educational use
 Built for students preparing for placement interviews.
 
 **Happy Learning! 🚀**
+=======
+# DSA_tracker_app
+>>>>>>> fd4f205e90f1eefa5df110d9b0359d11ed4af389
