@@ -29,9 +29,9 @@ function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">D</span>
+              <span className="text-white font-bold text-lg">CP</span>
             </div>
-            <span className="hidden md:inline font-bold text-lg">DSA Tracker Pro</span>
+            <span className="hidden md:inline font-bold text-lg">CodePulse</span>
           </Link>
 
           {/* Progress Indicator */}

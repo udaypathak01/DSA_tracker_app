@@ -1,54 +1,24 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'sonner';
-import { useDSA } from '../hooks/useDSA';
-import { TOAST_MESSAGES } from '../utils/constants';
+import { motion } from "framer-motion";
+import { toast } from "sonner";
+import { useDSA } from "../hooks/useDSA";
+import { TOAST_MESSAGES } from "../utils/constants";
 
 /**
  * Settings Page
  * User settings, data management, and app configuration
  */
 function Settings() {
-  const { resetAllProgress, exportData, importData } = useDSA();
-  const [importing, setImporting] = useState(false);
-  const [mergeData, setMergeData] = useState(false);
+  const { resetAllProgress } = useDSA();
 
   const handleReset = () => {
-    if (window.confirm('Are you sure? This will mark all questions as incomplete.')) {
+    if (
+      window.confirm(
+        "Are you sure? This will mark all questions as incomplete.",
+      )
+    ) {
       resetAllProgress();
       toast.success(TOAST_MESSAGES.PROGRESS_RESET);
     }
-  };
-
-  const handleExport = () => {
-    try {
-      exportData();
-      toast.success(TOAST_MESSAGES.DATA_EXPORTED);
-    } catch (error) {
-      toast.error(TOAST_MESSAGES.ERROR_GENERIC);
-    }
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const json = event.target?.result;
-        const success = importData(json, mergeData);
-        if (success) {
-          toast.success(TOAST_MESSAGES.DATA_IMPORTED);
-          setImporting(false);
-        } else {
-          toast.error('Invalid file format');
-        }
-      } catch (error) {
-        toast.error(TOAST_MESSAGES.ERROR_GENERIC);
-      }
-    };
-    reader.readAsText(file);
   };
 
   const containerVariants = {
@@ -81,68 +51,11 @@ function Settings() {
         </p>
       </motion.div>
 
-      {/* Data Management Section */}
-      <motion.div variants={itemVariants} className="card p-4 sm:p-6">
-        <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 sm:mb-4">
-          📊 Data Management
-        </h2>
-
-        <div className="space-y-3 sm:space-y-4">
-          {/* Export */}
-          <motion.button
-            onClick={handleExport}
-            className="w-full btn btn-secondary justify-start"
-            whileHover={{ x: 4 }}
-          >
-            <span className="text-lg">📥</span>
-            <div className="text-left">
-              <p className="font-medium">Export Progress</p>
-              <p className="text-xs text-slate-600 dark:text-slate-400">
-                Download your data as JSON
-              </p>
-            </div>
-          </motion.button>
-
-          {/* Import */}
-          <div className="relative">
-            <input
-              type="file"
-              accept=".json"
-              onChange={handleFileChange}
-              className="hidden"
-              id="import-file"
-            />
-            <label
-              htmlFor="import-file"
-              className="w-full flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-slate-300 dark:border-dark-border cursor-pointer hover:bg-slate-50 dark:hover:bg-dark-border transition-colors text-sm"
-            >
-              <span className="text-lg flex-shrink-0">📤</span>
-              <div className="text-left">
-                <p className="font-medium text-xs sm:text-sm">Import Progress</p>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Upload a previously exported JSON file
-                </p>
-              </div>
-            </label>
-          </div>
-
-          {/* Merge Option */}
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={mergeData}
-              onChange={(e) => setMergeData(e.target.checked)}
-              className="w-4 h-4"
-            />
-            <span className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-              Merge with existing data (instead of replacing)
-            </span>
-          </label>
-        </div>
-      </motion.div>
-
       {/* Danger Zone */}
-      <motion.div variants={itemVariants} className="card p-4 sm:p-6 border-red-200 dark:border-red-800">
+      <motion.div
+        variants={itemVariants}
+        className="card p-4 sm:p-6 border-red-200 dark:border-red-800"
+      >
         <h2 className="text-lg sm:text-xl font-bold text-red-600 dark:text-red-400 mb-3 sm:mb-4">
           ⚠️ Danger Zone
         </h2>
@@ -155,7 +68,9 @@ function Settings() {
           <span className="text-lg flex-shrink-0">🔄</span>
           <div className="text-left">
             <p className="font-medium text-xs sm:text-sm">Reset All Progress</p>
-            <p className="text-xs opacity-75">Mark all questions as incomplete</p>
+            <p className="text-xs opacity-75">
+              Mark all questions as incomplete
+            </p>
           </div>
         </motion.button>
       </motion.div>
@@ -163,17 +78,74 @@ function Settings() {
       {/* About */}
       <motion.div variants={itemVariants} className="card p-4 sm:p-6">
         <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-4">
-          ℹ️ About
+          ℹ️ About CodePulse
         </h2>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-2">
-          <strong>DSA Tracker Pro</strong> v1.0
-        </p>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-3 sm:mb-4">
-          A comprehensive tool to help students track their DSA learning journey for placement preparation.
-        </p>
-        <p className="text-xs text-slate-500 dark:text-slate-500">
-          Made with ❤️ for aspiring software engineers by <a href="https://www.linkedin.com/in/uday-pathak-b88215324?utm_source=share_via&utm_content=profile&utm_medium=member_android">Uday Pathak</a>
-        </p>
+
+        <div className="space-y-3 sm:space-y-4">
+          <div>
+            <p className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
+              📌 Your DSA Mastery Companion
+            </p>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              <strong>CodePulse</strong> is your ultimate Data Structures and
+              Algorithms (DSA) tracker designed to help you excel in coding
+              interviews and placement preparation. Master algorithm practice,
+              build consistent coding habits, and achieve your dream placements.
+            </p>
+          </div>
+
+          <div>
+            <p className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
+              ✨ Key Features
+            </p>
+            <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 space-y-1">
+              <li>• 📊 Smart progress tracking for LeetCode, GFG questions</li>
+              <li>
+                • 🔥 Streak Counter - Build consistent daily coding habits
+              </li>
+              <li>
+                • 📈 Success Rate Analytics - Monitor your learning efficiency
+              </li>
+              <li>
+                • 🎯 Topic-wise Classification - Organize by arrays, graphs, DP,
+                and more
+              </li>
+              <li>• 🌙 Dark Mode Support - Code comfortably at any time</li>
+              <li>
+                • 📱 Fully Responsive - Perfect for mobile, tablet & desktop
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
+              🎯 Perfect For
+            </p>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              College students preparing for placements, competitive
+              programmers, candidates preparing for FAANG interviews, and anyone
+              serious about improving their algorithmic problem-solving skills.
+            </p>
+          </div>
+
+          <div className="pt-2 border-t border-slate-200 dark:border-dark-border">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
+              Made with ❤️ for aspiring software engineers
+            </p>
+            <p className="text-xs text-slate-500 dark:text-slate-500">
+              Created by{" "}
+              <a
+                href="https://www.linkedin.com/in/uday-pathak-b88215324?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                Uday Pathak
+              </a>
+            </p>
+            <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
+              <strong>CodePulse DSA Tracker</strong> v1.0
+            </p>
+          </div>
+        </div>
       </motion.div>
     </motion.div>
   );
