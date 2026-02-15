@@ -11,6 +11,7 @@ function Sidebar() {
   const navItems = [
     { path: '/', label: 'Dashboard', icon: '📊' },
     { path: '/topics', label: 'Topics', icon: '📚' },
+    { path: '/resources', label: 'Resources', icon: '🔗' },
     { path: '/settings', label: 'Settings', icon: '⚙️' },
   ];
 
