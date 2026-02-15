@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useDSA } from '../hooks/useDSA';
-import SearchBox from '../components/filters/SearchBox';
-import FilterBar from '../components/filters/FilterBar';
-import SearchResults from '../components/filters/SearchResults';
-import TopicAccordion from '../components/topics/TopicAccordion';
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useDSA } from "../hooks/useDSA";
+import SearchBox from "../components/filters/SearchBox";
+import FilterBar from "../components/filters/FilterBar";
+import SearchResults from "../components/filters/SearchResults";
+import TopicAccordion from "../components/topics/TopicAccordion";
 
 /**
  * Topics Page
@@ -28,7 +28,7 @@ function Topics() {
 
   // Group questions by topic
   const questionsByTopic = topics.reduce((acc, topic) => {
-    acc[topic] = filteredQuestions.filter(q => q.topic === topic);
+    acc[topic] = filteredQuestions.filter((q) => q.topic === topic);
     return acc;
   }, {});
 
@@ -62,6 +62,9 @@ function Topics() {
         <p className="text-slate-600 dark:text-slate-400">
           Organize your DSA learning by topics and track progress
         </p>
+        <p className="text-slate-600 dark:text-slate-400">
+          Practice questions for MANG and service-based companies. That's enough for getting placed.
+        </p>
       </motion.div>
 
       {/* Search and Filters */}
@@ -79,7 +82,9 @@ function Topics() {
       <motion.div variants={itemVariants} className="space-y-3">
         {topics.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-slate-500 dark:text-slate-400">No topics available</p>
+            <p className="text-slate-500 dark:text-slate-400">
+              No topics available
+            </p>
           </div>
         ) : (
           topics.map((topic) => (
