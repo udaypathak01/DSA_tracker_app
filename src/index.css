@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply transition-colors duration-200;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white dark:bg-dark-bg text-slate-900 dark:text-slate-100;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100 dark:bg-dark-border;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-400 dark:bg-slate-600 rounded-full hover:bg-slate-500 dark:hover:bg-slate-500;
+}
+
+/* Utility classes */
+.card {
+  @apply bg-white dark:bg-dark-card rounded-lg border border-slate-200 dark:border-dark-border shadow-sm hover:shadow-md transition-shadow;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-dark-bg cursor-pointer;
+}
+
+.btn-primary {
+  @apply btn bg-blue-600 hover:bg-blue-700 text-white;
+}
+
+.btn-secondary {
+  @apply btn bg-slate-200 dark:bg-dark-border hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100;
+}
+
+.btn-ghost {
+  @apply btn bg-transparent hover:bg-slate-100 dark:hover:bg-dark-border;
+}
+
+.badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.badge-success {
+  @apply badge bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200;
+}
+
+.badge-warning {
+  @apply badge bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200;
+}
+
+.badge-error {
+  @apply badge bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200;
+}
+
+.badge-info {
+  @apply badge bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200;
+}
+
+.input {
+  @apply w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-dark-border bg-white dark:bg-dark-card text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+}
+
+.modal-content {
+  @apply card max-w-md w-full mx-4 shadow-xl;
+}
+
+.divider {
+  @apply border-t border-slate-200 dark:border-dark-border my-4;
+}
+
+.text-muted {
+  @apply text-slate-600 dark:text-slate-400;
+}
+
+.text-sm-muted {
+  @apply text-sm text-slate-500 dark:text-slate-500;
+}
+
+.loading-skeleton {
+  @apply bg-slate-200 dark:bg-dark-border rounded animate-pulse;
+}
