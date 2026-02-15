@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useDSA } from '../hooks/useDSA';
 import SearchBox from '../components/filters/SearchBox';
@@ -11,8 +12,16 @@ import TopicAccordion from '../components/topics/TopicAccordion';
  * Displays all DSA topics with questions organized by difficulty
  */
 function Topics() {
+  const location = useLocation();
   const { getFilteredQuestions, getTopics, setSearchQuery } = useDSA();
   const [expandedTopic, setExpandedTopic] = useState(null);
+
+  // Auto-expand topic if coming from dashboard
+  useEffect(() => {
+    if (location.state?.selectedTopic) {
+      setExpandedTopic(location.state.selectedTopic);
+    }
+  }, [location.state?.selectedTopic]);
 
   const filteredQuestions = getFilteredQuestions();
   const topics = getTopics();

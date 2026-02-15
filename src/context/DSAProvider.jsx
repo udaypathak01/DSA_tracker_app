@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import DSAContext from './DSAContext';
-import { loadFromLocalStorage, saveToLocalStorage, clearAllLocalStorage } from '../utils/localStorage';
+import { loadFromLocalStorage, saveToLocalStorage, removeFromLocalStorage } from '../utils/localStorage';
 import { sampleQuestions } from '../data/sampleQuestions';
 import { calculateStreak, isToday } from '../utils/dateUtils';
 
@@ -173,8 +173,8 @@ export const DSAProvider = ({ children }) => {
 
   // Reset all progress
   const resetAllProgress = useCallback(() => {
-    // Clear all localStorage
-    clearAllLocalStorage();
+    // Delete dsa-tracker-data from localStorage
+    removeFromLocalStorage('dsa-tracker-data');
     
     // Reset state to initial values
     setQuestions(sampleQuestions);
@@ -188,14 +188,6 @@ export const DSAProvider = ({ children }) => {
       platform: [],
     });
     setSearchQuery('');
-    
-    // Save initial state to localStorage
-    saveToLocalStorage('dsa-tracker-data', {
-      questions: sampleQuestions,
-      currentStreak: 0,
-      lastActivityDate: null,
-      recentActivity: [],
-    });
   }, []);
 
   // Export data

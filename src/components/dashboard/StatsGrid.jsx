@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { useDSA } from '../../hooks/useDSA';
 import { getTopicStats } from '../../utils/progressCalculator';
 
@@ -7,8 +8,13 @@ import { getTopicStats } from '../../utils/progressCalculator';
  * Displays topic-wise completion statistics
  */
 function StatsGrid() {
+  const navigate = useNavigate();
   const { questions } = useDSA();
   const topicStats = getTopicStats(questions);
+
+  const handleTopicClick = (topic) => {
+    navigate('/topics', { state: { selectedTopic: topic } });
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -38,7 +44,14 @@ function StatsGrid() {
         animate="visible"
       >
         {topicStats.map((stat) => (
-          <motion.div key={stat.topic} className="card p-4" variants={itemVariants}>
+          <motion.div
+            key={stat.topic}
+            className="card p-4 cursor-pointer hover:shadow-lg transition-shadow"
+            variants={itemVariants}
+            onClick={() => handleTopicClick(stat.topic)}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.2 }}
+          >
             <div className="flex justify-between items-start mb-3">
               <h4 className="font-semibold text-sm text-slate-900 dark:text-white">
                 {stat.topic}
