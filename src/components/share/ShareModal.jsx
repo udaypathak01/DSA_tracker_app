@@ -18,6 +18,8 @@ function ShareModal({ isOpen, problem, streak, quote, userName, onClose }) {
   const [isDownloading, setIsDownloading] = useState(false);
   const [editableQuote, setEditableQuote] = useState(quote);
   const [showQuoteEdit, setShowQuoteEdit] = useState(false);
+  const [editableUserName, setEditableUserName] = useState(userName);
+  const [showNameEdit, setShowNameEdit] = useState(false);
 
   if (!isOpen || !problem) return null;
 
@@ -172,9 +174,35 @@ function ShareModal({ isOpen, problem, streak, quote, userName, onClose }) {
               problem={problem}
               streak={streak}
               quote={editableQuote}
-              userName={userName}
+              userName={editableUserName}
             />
           </motion.div>
+
+          {/* Name Edit Section */}
+          {showNameEdit && (
+            <motion.div
+              className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-3 sm:p-4"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <label className="block text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+                Edit Your Name
+              </label>
+              <input
+                type="text"
+                value={editableUserName}
+                onChange={(e) => setEditableUserName(e.target.value)}
+                className="w-full p-2 sm:p-3 bg-white dark:bg-slate-800 border border-purple-300 dark:border-purple-700 rounded-lg text-slate-900 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="Enter your name..."
+              />
+              <button
+                onClick={() => setShowNameEdit(false)}
+                className="mt-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-purple-600 text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-purple-700 transition-colors"
+              >
+                Save Name
+              </button>
+            </motion.div>
+          )}
 
           {/* Quote Edit Section */}
           {showQuoteEdit && (
@@ -213,7 +241,7 @@ function ShareModal({ isOpen, problem, streak, quote, userName, onClose }) {
             <motion.button
               onClick={handleDownloadImage}
               disabled={isDownloading}
-              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-slate-400 disabled:to-slate-500 text-white rounded-lg font-semibold text-sm transition-all duration-200 shadow-lg"
+              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-slate-400 disabled:to-slate-500 text-white rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 shadow-lg"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -227,12 +255,11 @@ function ShareModal({ isOpen, problem, streak, quote, userName, onClose }) {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     />
                   </svg>
-                  <span className="hidden sm:inline">Downloading...</span>
-                  <span className="sm:hidden">Please wait...</span>
+                  <span>Downloading...</span>
                 </>
               ) : (
                 <>
-                  📥<span className="hidden sm:inline"> Download PNG</span>
+                  📥 <span>Download PNG</span>
                 </>
               )}
             </motion.button>
@@ -240,11 +267,11 @@ function ShareModal({ isOpen, problem, streak, quote, userName, onClose }) {
             {/* LinkedIn Share Button */}
             <motion.button
               onClick={handleLinkedInShare}
-              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg font-semibold text-sm transition-all duration-200 shadow-lg"
+              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 shadow-lg"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              💼<span className="hidden sm:inline"> LinkedIn Share</span>
+              💼 <span>LinkedIn Share</span>
             </motion.button>
           </motion.div>
 
@@ -258,21 +285,39 @@ function ShareModal({ isOpen, problem, streak, quote, userName, onClose }) {
             {/* Copy Caption Button */}
             <motion.button
               onClick={handleCopyCaption}
-              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-100 dark:bg-dark-border hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-lg font-semibold text-sm transition-colors"
+              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-100 dark:bg-dark-border hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-lg font-semibold text-xs sm:text-sm transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              📋<span className="hidden sm:inline"> Copy Caption</span>
+              📋 <span>Copy Caption</span>
             </motion.button>
 
+            {/* Edit Name Button */}
+            <motion.button
+              onClick={() => setShowNameEdit(!showNameEdit)}
+              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-100 dark:bg-dark-border hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-lg font-semibold text-xs sm:text-sm transition-colors"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              👤 <span>Edit Name</span>
+            </motion.button>
+          </motion.div>
+
+          {/* Additional Actions - Row 2 */}
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-1 gap-2 sm:gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
             {/* Edit Quote Button */}
             <motion.button
               onClick={() => setShowQuoteEdit(!showQuoteEdit)}
-              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-100 dark:bg-dark-border hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-lg font-semibold text-sm transition-colors"
+              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-100 dark:bg-dark-border hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-lg font-semibold text-xs sm:text-sm transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              ✏️<span className="hidden sm:inline"> Edit Quote</span>
+              ✏️ <span>Edit Quote</span>
             </motion.button>
           </motion.div>
 

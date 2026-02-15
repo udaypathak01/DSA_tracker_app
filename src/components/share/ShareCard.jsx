@@ -193,7 +193,7 @@ const ShareCard = forwardRef(({ problem, streak, quote, userName = 'Developer' }
           transition={{ delay: 0.8 }}
         >
           <span className="text-white/80 font-semibold text-xs sm:text-sm">
-            Powered by DSA Tracker Pro
+            Powered by CodePulse
           </span>
         </motion.div>
       </motion.div>
