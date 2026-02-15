@@ -49,18 +49,18 @@ function ResourceFilters({ filters, onFiltersChange, onClearFilters, hasActiveFi
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-2 sm:space-y-4"
+      className="space-y-1.5 sm:space-y-3"
     >
       {/* Clear Filters Button */}
       {hasActiveFilters && (
         <motion.button
           variants={itemVariants}
           onClick={onClearFilters}
-          className="w-full px-3 sm:px-4 py-1.5 sm:py-2 bg-amber-50 dark:bg-amber-900/20 hover:bg-amber-100 dark:hover:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-lg font-medium text-xs sm:text-sm transition-colors border border-amber-200 dark:border-amber-800"
+          className="w-full px-2 sm:px-3 py-1 sm:py-1.5 bg-amber-50 dark:bg-amber-900/20 hover:bg-amber-100 dark:hover:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-lg font-medium text-xs transition-colors border border-amber-200 dark:border-amber-800"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          ✕ Clear All Filters
+          ✕ Clear
         </motion.button>
       )}
 
@@ -69,16 +69,16 @@ function ResourceFilters({ filters, onFiltersChange, onClearFilters, hasActiveFi
         <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
           📊 Level
         </h3>
-        <div className="space-y-1.5 sm:space-y-2">
+        <div className="space-y-1">
           {levels.map((level) => (
-            <label key={level} className="flex items-center gap-2.5 sm:gap-3 cursor-pointer p-1 rounded hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+            <label key={level} className="flex items-center gap-2 cursor-pointer p-0.5 rounded hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
               <input
                 type="checkbox"
                 checked={filters.level.includes(level)}
                 onChange={() => handleLevelToggle(level)}
-                className="w-4 h-4 sm:w-5 sm:h-5 rounded accent-blue-600 cursor-pointer"
+                className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded accent-blue-600 cursor-pointer"
               />
-              <span className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <span className="text-xs text-slate-700 dark:text-slate-300">
                 {level === 'Beginner' && '🟢'}
                 {level === 'Intermediate' && '🟡'}
                 {level === 'Advanced' && '🔴'} {level}
@@ -89,40 +89,40 @@ function ResourceFilters({ filters, onFiltersChange, onClearFilters, hasActiveFi
       </motion.div>
 
       {/* Type Filter */}
-      <motion.div variants={itemVariants} className="bg-white dark:bg-dark-card p-3 sm:p-4 rounded-lg border border-slate-200 dark:border-dark-border">
-        <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
+      <motion.div variants={itemVariants} className="bg-white dark:bg-dark-card p-2 sm:p-3 rounded-lg border border-slate-200 dark:border-dark-border">
+        <h3 className="text-xs font-bold text-slate-900 dark:text-white mb-1.5 sm:mb-2 flex items-center gap-1.5">
           🏷️ Type
         </h3>
-        <div className="space-y-1.5 sm:space-y-2 max-h-40 sm:max-h-48 overflow-y-auto">
+        <div className="space-y-1 max-h-32 sm:max-h-40 overflow-y-auto">
           {types.map((type) => (
-            <label key={type} className="flex items-center gap-2.5 sm:gap-3 cursor-pointer p-1 rounded hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+            <label key={type} className="flex items-center gap-2 cursor-pointer p-0.5 rounded hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
               <input
                 type="checkbox"
                 checked={filters.type.includes(type)}
                 onChange={() => handleTypeToggle(type)}
-                className="w-4 h-4 sm:w-5 sm:h-5 rounded accent-blue-600 cursor-pointer"
+                className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded accent-blue-600 cursor-pointer"
               />
-              <span className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">{type}</span>
+              <span className="text-xs text-slate-700 dark:text-slate-300">{type}</span>
             </label>
           ))}
         </div>
       </motion.div>
 
       {/* Topic Filter */}
-      <motion.div variants={itemVariants} className="bg-white dark:bg-dark-card p-3 sm:p-4 rounded-lg border border-slate-200 dark:border-dark-border">
-        <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
+      <motion.div variants={itemVariants} className="bg-white dark:bg-dark-card p-2 sm:p-3 rounded-lg border border-slate-200 dark:border-dark-border">
+        <h3 className="text-xs font-bold text-slate-900 dark:text-white mb-1.5 sm:mb-2 flex items-center gap-1.5">
           🎯 Topic
         </h3>
-        <div className="space-y-1.5 sm:space-y-2 max-h-48 sm:max-h-64 overflow-y-auto">
+        <div className="space-y-1 max-h-40 sm:max-h-56 overflow-y-auto">
           {topics.map((topic) => (
-            <label key={topic} className="flex items-center gap-2.5 sm:gap-3 cursor-pointer p-1 rounded hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+            <label key={topic} className="flex items-center gap-2 cursor-pointer p-0.5 rounded hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
               <input
                 type="checkbox"
                 checked={filters.topic.includes(topic)}
                 onChange={() => handleTopicToggle(topic)}
-                className="w-4 h-4 sm:w-5 sm:h-5 rounded accent-blue-600 cursor-pointer"
+                className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded accent-blue-600 cursor-pointer"
               />
-              <span className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">{topic}</span>
+              <span className="text-xs text-slate-700 dark:text-slate-300">{topic}</span>
             </label>
           ))}
         </div>

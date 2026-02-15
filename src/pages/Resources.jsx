@@ -22,7 +22,6 @@ function Resources() {
     clearFilters,
   } = useResources();
 
-  const [viewMode, setViewMode] = useState('grouped'); // 'grouped' or 'all'
   const [showFilters, setShowFilters] = useState(false);
 
   const hasActiveFilters = filters.topic.length > 0 || filters.type.length > 0 || filters.level.length > 0;
@@ -43,15 +42,15 @@ function Resources() {
 
   return (
     <motion.div
-      className="space-y-3 sm:space-y-4 md:space-y-6"
+      className="space-y-2 sm:space-y-3 md:space-y-6"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
       {/* Header */}
       <motion.div variants={itemVariants}>
-        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2">
-          📚 Learning Resources
+        <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-0.5 sm:mb-1">
+          📚 Resources
         </h1>
         <p className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">
           Curated content to master DSA & crack placements
@@ -72,29 +71,16 @@ function Resources() {
         variants={itemVariants} 
         className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3"
       >
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-          <motion.button
-            onClick={() => setShowFilters(!showFilters)}
-            className="px-2 sm:px-4 py-2 sm:py-2.5 bg-white dark:bg-dark-card border border-slate-300 dark:border-dark-border rounded-lg font-medium text-xs sm:text-sm flex items-center justify-center gap-1 sm:gap-2 hover:bg-slate-50 dark:hover:bg-dark-border transition-colors"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <span>🔽</span>
-            <span className="hidden xs:inline">{showFilters ? 'Hide' : 'Show'} Filters</span>
-            <span className="inline xs:hidden">Filter</span>
-          </motion.button>
-
-          <motion.button
-            onClick={() => setViewMode(viewMode === 'grouped' ? 'all' : 'grouped')}
-            className="px-2 sm:px-4 py-2 sm:py-2.5 bg-white dark:bg-dark-card border border-slate-300 dark:border-dark-border rounded-lg font-medium text-xs sm:text-sm flex items-center justify-center gap-1 sm:gap-2 hover:bg-slate-50 dark:hover:bg-dark-border transition-colors"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <span>{viewMode === 'grouped' ? '🔀' : '📂'}</span>
-            <span className="hidden xs:inline">{viewMode === 'grouped' ? 'All' : 'Grouped'}</span>
-            <span className="inline xs:hidden">View</span>
-          </motion.button>
-        </div>
+        <motion.button
+          onClick={() => setShowFilters(!showFilters)}
+          className="px-2 sm:px-4 py-2 sm:py-2.5 bg-white dark:bg-dark-card border border-slate-300 dark:border-dark-border rounded-lg font-medium text-xs sm:text-sm flex items-center justify-center gap-1 sm:gap-2 hover:bg-slate-50 dark:hover:bg-dark-border transition-colors"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <span>🔽</span>
+          <span className="hidden xs:inline">{showFilters ? 'Hide' : 'Show'} Filters</span>
+          <span className="inline xs:hidden">Filter</span>
+        </motion.button>
 
         <span className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium text-center sm:text-right">
           {filteredResources.length} resource{filteredResources.length !== 1 ? 's' : ''}
@@ -102,7 +88,7 @@ function Resources() {
       </motion.div>
 
       {/* Main Grid - Full Width on Mobile */}
-      <div className="w-full grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 lg:grid-cols-4">
+      <div className="w-full grid gap-2 sm:gap-3 md:gap-5 lg:gap-6 grid-cols-1 lg:grid-cols-4">
         {/* Filters Sidebar - Full Width on Mobile when open */}
         {showFilters && (
           <motion.div
@@ -153,14 +139,48 @@ function Resources() {
                 </motion.button>
               )}
             </motion.div>
-          ) : viewMode === 'grouped' ? (
-            // Grouped by Category View
+          ) : (
+            // Resources with Bookmarks Section
             <motion.div
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
             >
+              {/* Bookmarks Section */}
+              {filteredResources.some((r) => r.bookmarked) && (
+                <motion.div variants={itemVariants}>
+                  <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 flex-wrap">
+                    <span className="text-base sm:text-xl flex-shrink-0">⭐</span>
+                    <h2 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-slate-900 dark:text-white">
+                      My Bookmarks
+                    </h2>
+                    <span className="ml-auto text-xs sm:text-sm text-slate-500 dark:text-slate-400 flex-shrink-0">
+                      {filteredResources.filter((r) => r.bookmarked).length}
+                    </span>
+                  </div>
+
+                  <motion.div
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {filteredResources
+                      .filter((resource) => resource.bookmarked)
+                      .map((resource) => (
+                        <ResourceCard
+                          key={resource.id}
+                          resource={resource}
+                          onBookmark={toggleBookmark}
+                          isBookmarked={resource.bookmarked}
+                        />
+                      ))}
+                  </motion.div>
+                </motion.div>
+              )}
+
+              {/* Categories Section */}
               {categories.map((category) => {
                 const categoryResources = groupedByCategory[category] || [];
                 if (categoryResources.length === 0) return null;
@@ -182,9 +202,9 @@ function Resources() {
 
                 return (
                   <motion.div key={category} variants={itemVariants}>
-                    <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 flex-wrap">
-                      <span className="text-lg sm:text-2xl flex-shrink-0">{getCategoryEmoji(category)}</span>
-                      <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-900 dark:text-white">
+                    <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 flex-wrap">
+                      <span className="text-base sm:text-xl flex-shrink-0">{getCategoryEmoji(category)}</span>
+                      <h2 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-slate-900 dark:text-white">
                         {category}
                       </h2>
                       <span className="ml-auto text-xs sm:text-sm text-slate-500 dark:text-slate-400 flex-shrink-0">
@@ -211,23 +231,7 @@ function Resources() {
                 );
               })}
             </motion.div>
-          ) : (
-            // All Resources Grid View
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {filteredResources.map((resource) => (
-                <ResourceCard
-                  key={resource.id}
-                  resource={resource}
-                  onBookmark={toggleBookmark}
-                  isBookmarked={resource.bookmarked}
-                />
-              ))}
-            </motion.div>
+
           )}
         </motion.div>
       </div>
@@ -235,9 +239,9 @@ function Resources() {
       {/* Footer Info - Responsive Padding */}
       <motion.div
         variants={itemVariants}
-        className="mt-6 sm:mt-8 md:mt-12 p-3 sm:p-4 md:p-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg"
+        className="mt-3 sm:mt-6 md:mt-10 p-2 sm:p-3 md:p-5 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg"
       >
-        <p className="text-xs sm:text-sm text-blue-800 dark:text-blue-300">
+        <p className="text-xs text-blue-800 dark:text-blue-300">
           <span className="block sm:inline">💡 <strong>Tip:</strong> </span>
           <span className="block sm:inline">Bookmark your favorite resources to access them quickly later. Mix and match resources from different types!</span>
         </p>

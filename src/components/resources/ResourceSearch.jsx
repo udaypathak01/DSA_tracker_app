@@ -15,12 +15,12 @@ function ResourceSearch({ searchQuery, onSearchChange, resultsCount }) {
       <div className="relative">
         <input
           type="text"
-          placeholder="Search resources..."
+          placeholder="Search..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="w-full px-3 sm:px-5 py-2.5 sm:py-4 pl-9 sm:pl-12 bg-white dark:bg-dark-card border-2 border-slate-200 dark:border-dark-border rounded-lg sm:rounded-2xl text-xs sm:text-base text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
+          className="w-full px-2 sm:px-4 py-2 sm:py-3 pl-8 sm:pl-11 bg-white dark:bg-dark-card border-2 border-slate-200 dark:border-dark-border rounded-lg text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
         />
-        <span className="absolute left-2.5 sm:left-5 top-1/2 transform -translate-y-1/2 text-base sm:text-xl">
+        <span className="absolute left-2.5 sm:left-4 top-1/2 transform -translate-y-1/2 text-sm sm:text-base">
           🔍
         </span>
 

@@ -51,32 +51,32 @@ function ResourceCard({ resource, onBookmark, isBookmarked }) {
           }}
         />
         {/* Views Badge */}
-        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-md sm:rounded-lg backdrop-blur-sm">
+        <div className="absolute top-1 right-1 sm:top-2 sm:right-2 bg-black/60 text-white text-xs px-1.5 py-0.5 rounded-md backdrop-blur-sm">
           👁️ {(resource.views / 1000).toFixed(0)}k
         </div>
       </div>
 
       {/* Content - Mobile optimized padding */}
-      <div className="p-3 sm:p-4 flex-1 flex flex-col">
+      <div className="p-2 sm:p-3 md:p-4 flex-1 flex flex-col">
         {/* Title */}
-        <h3 className="text-xs sm:text-sm md:text-base font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 line-clamp-2 hover:text-blue-600 dark:hover:text-blue-400">
+        <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white mb-0.5 sm:mb-1 line-clamp-2 hover:text-blue-600 dark:hover:text-blue-400">
           {resource.title}
         </h3>
 
         {/* Creator - Smaller on mobile */}
-        <p className="text-xs text-slate-500 dark:text-slate-400 mb-2 sm:mb-3 truncate">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 sm:mb-2 truncate">
           by <span className="font-medium text-slate-700 dark:text-slate-300">{resource.creator}</span>
         </p>
 
-        {/* Description */}
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-2 sm:mb-3 line-clamp-2 flex-1">
+        {/* Description - Hidden on very small screens */}
+        <p className="hidden sm:block text-xs text-slate-600 dark:text-slate-400 mb-1 sm:mb-2 line-clamp-2 flex-1">
           {resource.description}
         </p>
 
         {/* Badges */}
-        <div className="space-y-2 mb-2 sm:mb-3">
+        <div className="space-y-1 sm:space-y-2 mb-1 sm:mb-2">
           {/* Level & Type Row */}
-          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+          <div className="flex flex-wrap gap-1 sm:gap-1.5">
             <span
               className={`text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full font-medium ${getLevelColor(
                 resource.level
@@ -108,7 +108,7 @@ function ResourceCard({ resource, onBookmark, isBookmarked }) {
         </div>
 
         {/* Actions - Mobile optimized with collapse on extra small screens */}
-        <div className="flex gap-1.5 sm:gap-2 pt-2 sm:pt-3 border-t border-slate-200 dark:border-dark-border">
+        <div className="flex gap-1 sm:gap-2 pt-1 sm:pt-2 border-t border-slate-200 dark:border-dark-border">
           <motion.a
             href={resource.url}
             target="_blank"
