@@ -10,14 +10,14 @@ function ProgressCard({ title, progress, subtitle, color = 'from-blue-500 to-blu
 
   return (
     <motion.div
-      className="card p-6 flex flex-col items-center justify-center"
+      className="card p-4 sm:p-6 flex flex-col items-center justify-center"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
     >
-      <h3 className="text-lg font-semibold mb-6 text-slate-900 dark:text-white">{title}</h3>
+      <h3 className="text-sm sm:text-lg font-semibold mb-3 sm:mb-6 text-slate-900 dark:text-white text-center">{title}</h3>
 
       {/* Circular Progress */}
-      <div className="relative w-32 h-32 mb-6">
+      <div className="relative w-24 sm:w-32 h-24 sm:h-32 mb-3 sm:mb-6">
         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
           {/* Background circle */}
           <circle
@@ -57,7 +57,7 @@ function ProgressCard({ title, progress, subtitle, color = 'from-blue-500 to-blu
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
             <motion.div
-              className="text-3xl font-bold text-blue-600 dark:text-blue-400"
+              className="text-xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -69,7 +69,7 @@ function ProgressCard({ title, progress, subtitle, color = 'from-blue-500 to-blu
       </div>
 
       {/* Subtitle */}
-      <p className="text-sm text-slate-600 dark:text-slate-400 text-center">{subtitle}</p>
+      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 text-center">{subtitle}</p>
     </motion.div>
   );
 }

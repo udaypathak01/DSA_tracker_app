@@ -33,12 +33,12 @@ function StatsGrid() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
+      <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-6 text-slate-900 dark:text-white">
         Topic-wise Progress
       </h2>
 
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -46,25 +46,25 @@ function StatsGrid() {
         {topicStats.map((stat) => (
           <motion.div
             key={stat.topic}
-            className="card p-4 cursor-pointer hover:shadow-lg transition-shadow"
+            className="card p-3 sm:p-4 cursor-pointer hover:shadow-lg transition-shadow"
             variants={itemVariants}
             onClick={() => handleTopicClick(stat.topic)}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="flex justify-between items-start mb-3">
-              <h4 className="font-semibold text-sm text-slate-900 dark:text-white">
+            <div className="flex justify-between items-start mb-2 sm:mb-3">
+              <h4 className="font-semibold text-xs sm:text-sm text-slate-900 dark:text-white line-clamp-2">
                 {stat.topic}
               </h4>
-              <span className="text-xs font-bold text-blue-600 dark:text-blue-400">
+              <span className="text-xs font-bold text-blue-600 dark:text-blue-400 ml-1 flex-shrink-0">
                 {stat.progress}%
               </span>
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full bg-slate-200 dark:bg-dark-border rounded-full h-2 mb-3">
+            <div className="w-full bg-slate-200 dark:bg-dark-border rounded-full h-1.5 sm:h-2 mb-2 sm:mb-3">
               <motion.div
-                className="bg-blue-600 h-2 rounded-full"
+                className="bg-blue-600 h-1.5 sm:h-2 rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${stat.progress}%` }}
                 transition={{ duration: 0.6, delay: 0.1 }}
@@ -73,7 +73,7 @@ function StatsGrid() {
 
             {/* Stats */}
             <div className="text-xs text-slate-600 dark:text-slate-400">
-              <span className="font-medium">{stat.completed}</span>/<span>{stat.total}</span> questions
+              <span className="font-medium">{stat.completed}</span>/<span>{stat.total}</span>
             </div>
 
             {/* Difficulty Breakdown */}

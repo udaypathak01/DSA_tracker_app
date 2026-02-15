@@ -66,28 +66,28 @@ function Settings() {
 
   return (
     <motion.div
-      className="space-y-6 max-w-2xl"
+      className="space-y-4 sm:space-y-6 max-w-2xl px-0"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
       {/* Header */}
       <motion.div variants={itemVariants}>
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2">
           ⚙️ Settings
         </h1>
-        <p className="text-slate-600 dark:text-slate-400">
+        <p className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">
           Manage your data and application preferences
         </p>
       </motion.div>
 
       {/* Data Management Section */}
-      <motion.div variants={itemVariants} className="card p-6">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+      <motion.div variants={itemVariants} className="card p-4 sm:p-6">
+        <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 sm:mb-4">
           📊 Data Management
         </h2>
 
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {/* Export */}
           <motion.button
             onClick={handleExport}
@@ -114,11 +114,11 @@ function Settings() {
             />
             <label
               htmlFor="import-file"
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg border border-slate-300 dark:border-dark-border cursor-pointer hover:bg-slate-50 dark:hover:bg-dark-border transition-colors"
+              className="w-full flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-slate-300 dark:border-dark-border cursor-pointer hover:bg-slate-50 dark:hover:bg-dark-border transition-colors text-sm"
             >
-              <span className="text-lg">📤</span>
+              <span className="text-lg flex-shrink-0">📤</span>
               <div className="text-left">
-                <p className=" font-medium">Import Progress</p>
+                <p className="font-medium text-xs sm:text-sm">Import Progress</p>
                 <p className="text-xs text-slate-600 dark:text-slate-400">
                   Upload a previously exported JSON file
                 </p>
@@ -134,7 +134,7 @@ function Settings() {
               onChange={(e) => setMergeData(e.target.checked)}
               className="w-4 h-4"
             />
-            <span className="text-sm text-slate-700 dark:text-slate-300">
+            <span className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">
               Merge with existing data (instead of replacing)
             </span>
           </label>
@@ -142,33 +142,33 @@ function Settings() {
       </motion.div>
 
       {/* Danger Zone */}
-      <motion.div variants={itemVariants} className="card p-6 border-red-200 dark:border-red-800">
-        <h2 className="text-xl font-bold text-red-600 dark:text-red-400 mb-4">
+      <motion.div variants={itemVariants} className="card p-4 sm:p-6 border-red-200 dark:border-red-800">
+        <h2 className="text-lg sm:text-xl font-bold text-red-600 dark:text-red-400 mb-3 sm:mb-4">
           ⚠️ Danger Zone
         </h2>
 
         <motion.button
           onClick={handleReset}
-          className="w-full px-4 py-3 bg-red-100 dark:bg-red-900/30 hover:bg-red-200 dark:hover:bg-red-900/50 text-red-700 dark:text-red-400 rounded-lg font-medium transition-colors flex items-center gap-3"
+          className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-red-100 dark:bg-red-900/30 hover:bg-red-200 dark:hover:bg-red-900/50 text-red-700 dark:text-red-400 rounded-lg font-medium text-sm transition-colors flex items-center gap-2 sm:gap-3"
           whileHover={{ x: 4 }}
         >
-          <span className="text-lg">🔄</span>
+          <span className="text-lg flex-shrink-0">🔄</span>
           <div className="text-left">
-            <p className="font-medium">Reset All Progress</p>
+            <p className="font-medium text-xs sm:text-sm">Reset All Progress</p>
             <p className="text-xs opacity-75">Mark all questions as incomplete</p>
           </div>
         </motion.button>
       </motion.div>
 
       {/* About */}
-      <motion.div variants={itemVariants} className="card p-6">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+      <motion.div variants={itemVariants} className="card p-4 sm:p-6">
+        <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-4">
           ℹ️ About
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-2">
           <strong>DSA Tracker Pro</strong> v1.0
         </p>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-3 sm:mb-4">
           A comprehensive tool to help students track their DSA learning journey for placement preparation.
         </p>
         <p className="text-xs text-slate-500 dark:text-slate-500">

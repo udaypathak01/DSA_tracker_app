@@ -49,26 +49,26 @@ function Topics() {
 
   return (
     <motion.div
-      className="space-y-6"
+      className="space-y-4 sm:space-y-6 px-0"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
       {/* Header */}
       <motion.div variants={itemVariants}>
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2">
           📚 Topics
         </h1>
-        <p className="text-slate-600 dark:text-slate-400">
+        <p className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">
           Organize your DSA learning by topics and track progress
         </p>
-        <p className="text-slate-600 dark:text-slate-400">
+        <p className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">
           Practice questions for MANG and service-based companies. That's enough for getting placed.
         </p>
       </motion.div>
 
       {/* Search and Filters */}
-      <motion.div variants={itemVariants} className="space-y-4">
+      <motion.div variants={itemVariants} className="space-y-2 sm:space-y-4">
         <SearchBox onChange={setSearchQuery} />
         <FilterBar />
       </motion.div>

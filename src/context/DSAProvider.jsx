@@ -3,6 +3,7 @@ import DSAContext from './DSAContext';
 import { loadFromLocalStorage, saveToLocalStorage, removeFromLocalStorage } from '../utils/localStorage';
 import { sampleQuestions } from '../data/sampleQuestions';
 import { calculateStreak, isToday } from '../utils/dateUtils';
+import { getRandomQuote } from '../utils/quotes';
 
 export const DSAProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]);
@@ -24,7 +25,11 @@ export const DSAProvider = ({ children }) => {
     editQuestion: false,
     delete: false,
     settings: false,
+    share: false,
   });
+  const [completedProblem, setCompletedProblem] = useState(null);
+  const [shareQuote, setShareQuote] = useState('');
+  const [userName, setUserName] = useState(loadFromLocalStorage('user-name') || 'Developer');
 
   // Initialize from localStorage or use sample data
   useEffect(() => {
@@ -98,6 +103,17 @@ export const DSAProvider = ({ children }) => {
 
     saveData(updated, activity);
   }, [questions, saveData]);
+
+  // Open share modal for a specific problem
+  const openShareModal = useCallback((problemId) => {
+    const problem = questions.find(q => q.id === problemId);
+    if (problem && problem.completed) {
+      const quote = getRandomQuote();
+      setShareQuote(quote);
+      setCompletedProblem(problem);
+      setShowModal(prev => ({ ...prev, share: true }));
+    }
+  }, [questions]);
 
   // Toggle favorite
   const toggleFavorite = useCallback((questionId) => {
@@ -278,6 +294,9 @@ export const DSAProvider = ({ children }) => {
     recentActivity,
     editingQuestion,
     showModal,
+    completedProblem,
+    shareQuote,
+    userName,
 
     // Actions
     toggleComplete,
@@ -291,6 +310,10 @@ export const DSAProvider = ({ children }) => {
     setSearchQuery,
     setEditingQuestion,
     setShowModal,
+    setUserName,
+    setCompletedProblem,
+    setShareQuote,
+    openShareModal,
     resetAllProgress,
     exportData,
     importData,

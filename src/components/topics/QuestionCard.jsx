@@ -9,7 +9,7 @@ import { DIFFICULTY_COLORS, PLATFORM_COLORS, TOAST_MESSAGES } from '../../utils/
  * Individual question card with actions
  */
 const QuestionCard = memo(function QuestionCard({ question }) {
-  const { toggleComplete, toggleFavorite, updateNotes, setShowModal, setEditingQuestion } =
+  const { toggleComplete, toggleFavorite, updateNotes, setShowModal, setEditingQuestion, openShareModal } =
     useDSA();
 
   const handleComplete = () => {
@@ -35,9 +35,17 @@ const QuestionCard = memo(function QuestionCard({ question }) {
     setShowModal((prev) => ({ ...prev, notes: true }));
   };
 
+  const handleShare = () => {
+    if (question.completed) {
+      openShareModal(question.id);
+    } else {
+      toast.error('Mark problem as completed first! ✓');
+    }
+  };
+
   return (
     <motion.div
-      className="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-lg p-4 flex items-center gap-3 hover:shadow-md transition-shadow"
+      className="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-lg p-2 sm:p-4 flex items-center gap-2 sm:gap-3 hover:shadow-md transition-shadow"
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2 }}
     >
@@ -46,19 +54,19 @@ const QuestionCard = memo(function QuestionCard({ question }) {
         type="checkbox"
         checked={question.completed}
         onChange={handleComplete}
-        className="w-5 h-5 rounded cursor-pointer"
+        className="w-4 sm:w-5 h-4 sm:h-5 rounded cursor-pointer flex-shrink-0"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       />
 
       {/* Content */}
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex items-center gap-1 sm:gap-2 flex-wrap">
           <a
             href={question.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`font-medium truncate hover:text-blue-600 dark:hover:text-blue-400 transition-colors ${
+            className={`font-medium text-xs sm:text-sm truncate hover:text-blue-600 dark:hover:text-blue-400 transition-colors ${
               question.completed
                 ? 'text-slate-600 dark:text-slate-400 line-through'
                 : 'text-slate-900 dark:text-white'
@@ -68,11 +76,11 @@ const QuestionCard = memo(function QuestionCard({ question }) {
           </a>
 
           {/* Badges */}
-          <div className="flex items-center gap-1 flex-wrap">
-            <span className={`badge ${DIFFICULTY_COLORS[question.difficulty]}`}>
+          <div className="flex items-center gap-0.5 sm:gap-1 flex-wrap">
+            <span className={`badge text-xs ${DIFFICULTY_COLORS[question.difficulty]}`}>
               {question.difficulty}
             </span>
-            <span className={`badge ${PLATFORM_COLORS[question.platform]}`}>
+            <span className={`badge text-xs ${PLATFORM_COLORS[question.platform]}`}>
               {question.platform}
             </span>
           </div>
@@ -100,18 +108,18 @@ const QuestionCard = memo(function QuestionCard({ question }) {
 
         {/* Notes Preview */}
         {question.notes && (
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 truncate">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 truncate">
             📝 {question.notes}
           </p>
         )}
       </div>
 
       {/* Actions */}
-      <div className="flex items-center gap-1 ml-auto">
+      <div className="flex items-center gap-0.5 sm:gap-1 ml-auto flex-shrink-0">
         {/* Notes Button */}
         <motion.button
           onClick={handleNotes}
-          className="p-2 rounded hover:bg-slate-100 dark:hover:bg-dark-border transition-colors"
+          className="p-1.5 sm:p-2 rounded hover:bg-slate-100 dark:hover:bg-dark-border transition-colors text-sm sm:text-base"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           title="Add notes"
@@ -122,19 +130,32 @@ const QuestionCard = memo(function QuestionCard({ question }) {
         {/* Favorite Button */}
         <motion.button
           onClick={handleFavorite}
-          className="p-2 rounded hover:bg-slate-100 dark:hover:bg-dark-border transition-colors"
+          className="p-1.5 sm:p-2 rounded hover:bg-slate-100 dark:hover:bg-dark-border transition-colors text-sm sm:text-base"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
           {question.favorite ? '⭐' : '☆'}
         </motion.button>
 
+        {/* Share Button (only show if completed) */}
+        {question.completed && (
+          <motion.button
+            onClick={handleShare}
+            className="p-1.5 sm:p-2 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors text-sm sm:text-base"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            title="Share achievement"
+          >
+            🎉
+          </motion.button>
+        )}
+
         {/* Link Button */}
         <motion.a
           href={question.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-2 rounded hover:bg-slate-100 dark:hover:bg-dark-border transition-colors"
+          className="p-1.5 sm:p-2 rounded hover:bg-slate-100 dark:hover:bg-dark-border transition-colors text-sm sm:text-base"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           title="Open in new tab"
