@@ -12,6 +12,7 @@ function Sidebar() {
     { path: '/', label: 'Dashboard', icon: '📊' },
     { path: '/topics', label: 'Topics', icon: '📚' },
     { path: '/resources', label: 'Resources', icon: '🔗' },
+    { path: '/blog', label: 'Blog', icon: '✍️' },
     { path: '/settings', label: 'Settings', icon: '⚙️' },
   ];
 
@@ -20,7 +21,9 @@ function Sidebar() {
       {/* Navigation Links */}
       <nav className="space-y-2 flex-1">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.path;
+          const isActive = item.path === '/' 
+            ? location.pathname === item.path 
+            : location.pathname.startsWith(item.path);
           return (
             <Link key={item.path} to={item.path}>
               <motion.div
