@@ -11,6 +11,7 @@ import BlogDetail from "./pages/BlogDetail";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 /**
  * Main App Component
  * Sets up routing and global providers
@@ -34,6 +35,7 @@ function App() {
         </Router>
         <Toaster position="bottom-right" />
         <Analytics />
+        <SpeedInsights />
       </DSAProvider>
     </HelmetProvider>
   );
