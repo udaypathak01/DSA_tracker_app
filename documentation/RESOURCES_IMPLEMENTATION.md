@@ -1,4 +1,4 @@
-# CodePulse Resources Feature - Implementation Guide
+# DSAOrbit Resources Feature - Implementation Guide
 
 ## ✅ What Has Been Implemented
 
@@ -64,7 +64,7 @@
 - ✅ Dark theme compatible
 - ✅ Fully responsive (mobile, tablet, desktop)
 - ✅ Smooth animations with Framer Motion
-- ✅ Consistent with existing CodePulse theme
+- ✅ Consistent with existing DSAOrbit theme
 - ✅ Empty state UI with helpful message
 - ✅ Mobile-friendly filters (toggle show/hide)
 - ✅ Sticky filter sidebar on desktop

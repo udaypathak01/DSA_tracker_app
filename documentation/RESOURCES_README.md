@@ -1,8 +1,8 @@
-# 🎉 CodePulse Resources Feature - Overview
+# 🎉 DSAOrbit Resources Feature - Overview
 
 ## What Has Been Delivered
 
-I've implemented a **complete, production-ready Resources feature** for your CodePulse DSA tracker app. This feature enables users to discover, search, filter, and bookmark curated learning resources.
+I've implemented a **complete, production-ready Resources feature** for your DSAOrbit DSA tracker app. This feature enables users to discover, search, filter, and bookmark curated learning resources.
 
 ---
 
@@ -65,7 +65,7 @@ I've implemented a **complete, production-ready Resources feature** for your Cod
 ### 🎨 Beautiful UI
 - Dark theme compatible
 - Smooth Framer Motion animations
-- Consistent with CodePulse design
+- Consistent with DSAOrbit design
 - Empty state messages
 - Hover effects on cards
 

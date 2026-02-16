@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# DSA Tracker Pro 📚
+# DSAOrbit 📚
 
 A comprehensive React.js web application for students to track their DSA sheet progress for placement preparation.
 

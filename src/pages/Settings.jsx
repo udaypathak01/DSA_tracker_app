@@ -78,7 +78,7 @@ function Settings() {
       {/* About */}
       <motion.div variants={itemVariants} className="card p-4 sm:p-6">
         <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-4">
-          ℹ️ About CodePulse
+          ℹ️ About DSAOrbit
         </h2>
 
         <div className="space-y-3 sm:space-y-4">
@@ -87,7 +87,7 @@ function Settings() {
               📌 Your DSA Mastery Companion
             </p>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-              <strong>CodePulse</strong> is your ultimate Data Structures and
+              <strong>DSAOrbit</strong> is your ultimate Data Structures and
               Algorithms (DSA) tracker designed to help you excel in coding
               interviews and placement preparation. Master algorithm practice,
               build consistent coding habits, and achieve your dream placements.
@@ -142,7 +142,7 @@ function Settings() {
               </a>
             </p>
             <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
-              <strong>CodePulse DSA Tracker</strong> v1.0
+              <strong>DSAOrbit</strong> v1.0
             </p>
           </div>
         </div>

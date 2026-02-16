@@ -43,7 +43,7 @@ function Sidebar() {
       {/* Footer Info */}
       <div className="border-t border-slate-200 dark:border-dark-border pt-4">
         <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
-          CodePulse-DSA tracker v1.0
+          DSAOrbit v1.0
         </p>
       </div>
     </aside>

@@ -30,9 +30,9 @@ function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">CP</span>
+              <span className="text-white font-bold text-lg">DO</span>
             </div>
-            <span className="hidden md:inline font-bold text-lg">CodePulse</span>
+            <span className="hidden md:inline font-bold text-lg">DSAOrbit</span>
           </Link>
 
           {/* Progress Indicator */}

@@ -1,4 +1,4 @@
-# ✅ CodePulse Resources Feature - Verification Checklist
+# ✅ DSAOrbit Resources Feature - Verification Checklist
 
 Use this checklist to verify that everything has been implemented correctly.
 
@@ -228,7 +228,7 @@ Use this checklist to verify that everything has been implemented correctly.
 ### Styling
 - [ ] Uses existing Tailwind CSS classes
 - [ ] Dark mode classes applied
-- [ ] Consistent with CodePulse design
+- [ ] Consistent with DSAOrbit design
 - [ ] No conflicting styles
 - [ ] Responsive Tailwind breakpoints used
 
@@ -356,4 +356,4 @@ When you've verified all items above, your Resources feature is **fully implemen
 
 ---
 
-**Congratulations! Your CodePulse Resources feature is live!** 🚀📚
+**Congratulations! Your DSAOrbit Resources feature is live!** 🚀📚
