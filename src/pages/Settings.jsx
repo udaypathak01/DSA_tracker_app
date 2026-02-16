@@ -166,6 +166,30 @@ function Settings() {
           </div>
         </div>
       </motion.div>
+      {/* Feedback & Suggestions */}
+      <motion.div variants={itemVariants} className="card p-4 sm:p-6">
+        <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 sm:mb-4">
+          💬 Suggestions & Hard Problems
+        </h2>
+
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-4">
+          Have suggestions to improve DSAOrbit? Found a challenging problem you
+          want us to add? Share it with us through the form below.
+        </p>
+
+        <motion.a
+          href="https://forms.gle/Hc98wQz45QS5Dmsk7"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 
+    bg-blue-600 hover:bg-blue-700 text-white rounded-lg 
+    font-medium text-sm transition-colors"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          📝 Submit Feedback / Hard Problems
+        </motion.a>
+      </motion.div>
     </motion.div>
   );
 }
