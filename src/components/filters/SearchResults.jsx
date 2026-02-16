@@ -87,12 +87,21 @@ function SearchResults() {
                 variants={itemVariants}
                 layout
               >
-                <div className="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-lg p-3">
+                <div className="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
+                    <div className="flex-1 min-w-0">
+                      <a
+                        href={question.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`font-semibold text-slate-900 dark:text-white mb-1 block hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-words ${
+                          question.completed
+                            ? 'text-slate-600 dark:text-slate-400 line-through'
+                            : ''
+                        }`}
+                      >
                         {question.title}
-                      </h3>
+                      </a>
                       <div className="flex flex-wrap gap-2 text-xs">
                         <span className="px-2 py-1 rounded bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
                           {question.topic}
