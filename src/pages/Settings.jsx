@@ -99,20 +99,39 @@ function Settings() {
               ✨ Key Features
             </p>
             <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 space-y-1">
-              <li>• 📊 Smart progress tracking for LeetCode, GFG questions</li>
               <li>
-                • 🔥 Streak Counter - Build consistent daily coding habits
+                • 📊 Advanced Progress Analytics – Track solved, pending &
+                topic-wise completion with clarity
               </li>
               <li>
-                • 📈 Success Rate Analytics - Monitor your learning efficiency
+                • 🔥 Smart Streak System – Build unstoppable daily coding
+                consistency
               </li>
               <li>
-                • 🎯 Topic-wise Classification - Organize by arrays, graphs, DP,
-                and more
+                • 📈 Performance Insights – Monitor success rate & identify weak
+                areas
               </li>
-              <li>• 🌙 Dark Mode Support - Code comfortably at any time</li>
               <li>
-                • 📱 Fully Responsive - Perfect for mobile, tablet & desktop
+                • 🎯 Structured Topic Roadmap – Organized learning from Arrays
+                to Dynamic Programming
+              </li>
+              <li>
+                • 📝 Personal Notes System – Save key patterns, tricks &
+                revision points
+              </li>
+              <li>
+                • ⭐ Mark Favorites – Quickly revisit important interview
+                problems
+              </li>
+              <li>
+                • 🌙 Dark Mode – Eye-friendly interface for long coding sessions
+              </li>
+              <li>
+                • 📱 Fully Responsive – Optimized for mobile, tablet & desktop
+              </li>
+              <li>
+                • ⚡ Fast & Lightweight – Built with modern React performance
+                standards
               </li>
             </ul>
           </div>

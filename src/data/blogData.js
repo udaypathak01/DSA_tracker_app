@@ -360,7 +360,7 @@ export const blogPosts = [
     author: "DSAOrbit Team",
     publishDate: "2024-02-12",
     readingTime: 6,
-    thumbnail: "https://pixabay.com/images/download/innovalabs-software-developer-6521720_1920.jpg",
+    thumbnail: "https://images.unsplash.com/photo-1605379399642-870262d3d051?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGV2ZWxvcGVyfGVufDB8fDB8fHww",
     thumbnailAlt: "Developer writing algorithms on laptop",
     tags: ["Algorithms", "Interview Prep", "Problem Solving", "Coding"],
     content: `
@@ -402,7 +402,7 @@ export const blogPosts = [
     author: "DSAOrbit Team",
     publishDate: "2024-02-20",
     readingTime: 5,
-    thumbnail: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=600&auto=format&fit=crop&q=60",
+    thumbnail: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRldmVsb3BlcnxlbnwwfHwwfHx8MA%3D%3D",
     thumbnailAlt: "Coding interview preparation",
     tags: ["Interview Prep", "DSA Topics", "Top Companies", "Coding Interviews"],
     content: `
@@ -444,7 +444,7 @@ export const blogPosts = [
   author: "DSAOrbit Team",
   publishDate: "2024-02-25",
   readingTime: 8,
-  thumbnail: "https://images.unsplash.com/photo-1506765515384-028b60a970df?w=600&auto=format&fit=crop&q=60",
+  thumbnail: "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZGV2ZWxvcGVyfGVufDB8fDB8fHww",
   thumbnailAlt: "Developer tracking coding progress",
   tags: ["Study Plan", "DSA Topics", "Interview Prep", "Problem Solving"],
   content: `

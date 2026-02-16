@@ -19,6 +19,7 @@ function Navbar() {
   const navItems = [
     { path: '/', label: 'Dashboard', icon: '📊' },
     { path: '/topics', label: 'Topics', icon: '📚' },
+    { path: '/blog', label: 'Blog', icon: '📝' },
     { path: '/resources', label: 'Resources', icon: '🔗' },
     { path: '/settings', label: 'Settings', icon: '⚙️' },
   ];
