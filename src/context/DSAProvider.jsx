@@ -1,11 +1,21 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import DSAContext from './DSAContext';
+import { useAuth } from '../hooks/useAuth';
 import { loadFromLocalStorage, saveToLocalStorage, removeFromLocalStorage } from '../utils/localStorage';
 import { sampleQuestions } from '../data/sampleQuestions';
 import { calculateStreak, isToday } from '../utils/dateUtils';
 import { getRandomQuote } from '../utils/quotes';
+import {
+  updateQuestionsInFirestore,
+  updateStreakInFirestore,
+  updateRecentActivityInFirestore,
+  resetProgressInFirestore,
+  getUserProgress,
+} from '../utils/firestoreUtils';
+import { toast } from 'sonner';
 
 export const DSAProvider = ({ children }) => {
+  const { user, loading: authLoading } = useAuth();
   const [questions, setQuestions] = useState([]);
   const [theme, setTheme] = useState('dark');
   const [searchQuery, setSearchQuery] = useState('');
@@ -30,35 +40,107 @@ export const DSAProvider = ({ children }) => {
   const [completedProblem, setCompletedProblem] = useState(null);
   const [shareQuote, setShareQuote] = useState('');
   const [userName, setUserName] = useState(loadFromLocalStorage('user-name') || 'Developer');
+  const [isSyncLoading, setIsSyncLoading] = useState(false);
 
-  // Initialize from localStorage or use sample data
+  /**
+   * Initialize data on app load
+   * For authenticated users: Load from Firestore
+   * For non-authenticated users: Load from localStorage or use sample data
+   */
   useEffect(() => {
-    const saved = loadFromLocalStorage('dsa-tracker-data');
-    const savedTheme = loadFromLocalStorage('dsa-theme');
+    const initializeData = async () => {
+      try {
+        // Wait for auth state to be determined
+        if (authLoading) return;
 
-    if (saved) {
-      setQuestions(saved.questions);
-      setCurrentStreak(saved.currentStreak || 0);
-      setLastActivityDate(saved.lastActivityDate);
-      setRecentActivity(saved.recentActivity || []);
-    } else {
-      setQuestions(sampleQuestions);
-      saveToLocalStorage('dsa-tracker-data', {
-        questions: sampleQuestions,
-        currentStreak: 0,
-        lastActivityDate: null,
-        recentActivity: [],
-      });
-    }
+        const savedTheme = loadFromLocalStorage('dsa-theme');
+        if (savedTheme) {
+          setTheme(savedTheme);
+          document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+        }
 
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    }
-  }, []);
+        if (user) {
+          // Authenticated user: Load from Firestore
+          setIsSyncLoading(true);
+          try {
+            const userProgress = await getUserProgress(user.uid);
 
-  // Save questions and activity to localStorage
-  const saveData = useCallback((updatedQuestions, activity = null) => {
+            // Load questions from Firestore if available, otherwise use sample questions
+            const saved = loadFromLocalStorage('dsa-tracker-data');
+            let questionsToLoad = sampleQuestions;
+
+            if (saved) {
+              questionsToLoad = saved.questions;
+            }
+
+            // Update questions with completion status from Firestore
+            const updatedQuestions = questionsToLoad.map(q => {
+              const solvedProblem = userProgress.solvedProblems?.find(
+                sp => sp.id === q.id
+              );
+              if (solvedProblem) {
+                return {
+                  ...q,
+                  completed: true,
+                  completedDate: solvedProblem.completedDate,
+                };
+              }
+              return q;
+            });
+
+            setQuestions(updatedQuestions);
+            setCurrentStreak(userProgress.streak || 0);
+            setLastActivityDate(userProgress.lastSolvedDate);
+            setRecentActivity(userProgress.recentActivity || []);
+          } catch (error) {
+            console.error('Error loading from Firestore, using localStorage:', error);
+            // Fallback to localStorage
+            const saved = loadFromLocalStorage('dsa-tracker-data');
+            if (saved) {
+              setQuestions(saved.questions);
+              setCurrentStreak(saved.currentStreak || 0);
+              setLastActivityDate(saved.lastActivityDate);
+              setRecentActivity(saved.recentActivity || []);
+            } else {
+              setQuestions(sampleQuestions);
+              saveToLocalStorage('dsa-tracker-data', {
+                questions: sampleQuestions,
+                currentStreak: 0,
+                lastActivityDate: null,
+                recentActivity: [],
+              });
+            }
+          } finally {
+            setIsSyncLoading(false);
+          }
+        } else {
+          // Non-authenticated user: Load from localStorage
+          const saved = loadFromLocalStorage('dsa-tracker-data');
+          if (saved) {
+            setQuestions(saved.questions);
+            setCurrentStreak(saved.currentStreak || 0);
+            setLastActivityDate(saved.lastActivityDate);
+            setRecentActivity(saved.recentActivity || []);
+          } else {
+            setQuestions(sampleQuestions);
+            saveToLocalStorage('dsa-tracker-data', {
+              questions: sampleQuestions,
+              currentStreak: 0,
+              lastActivityDate: null,
+              recentActivity: [],
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Error initializing data:', error);
+      }
+    };
+
+    initializeData();
+  }, [user, authLoading]);
+
+  // Save questions and activity to localStorage and Firestore
+  const saveData = useCallback(async (updatedQuestions, activity = null) => {
     setQuestions(updatedQuestions);
     const { streak, lastDate } = calculateStreak(updatedQuestions, lastActivityDate);
     setCurrentStreak(streak);
@@ -69,13 +151,26 @@ export const DSAProvider = ({ children }) => {
       : recentActivity;
     setRecentActivity(newActivity);
 
+    // Save to localStorage (always, as fallback)
     saveToLocalStorage('dsa-tracker-data', {
       questions: updatedQuestions,
       currentStreak: streak,
       lastActivityDate: lastDate,
       recentActivity: newActivity,
     });
-  }, [lastActivityDate, recentActivity]);
+
+    // Sync to Firestore if user is authenticated
+    if (user && user.uid) {
+      try {
+        await updateQuestionsInFirestore(user.uid, updatedQuestions);
+        await updateStreakInFirestore(user.uid, streak, lastDate);
+        await updateRecentActivityInFirestore(user.uid, newActivity);
+      } catch (error) {
+        console.error('Error syncing to Firestore:', error);
+        toast.error('Failed to sync progress to server');
+      }
+    }
+  }, [lastActivityDate, recentActivity, user]);
 
   // Toggle question completion
   const toggleComplete = useCallback((questionId) => {
@@ -188,7 +283,7 @@ export const DSAProvider = ({ children }) => {
   }, []);
 
   // Reset all progress
-  const resetAllProgress = useCallback(() => {
+  const resetAllProgress = useCallback(async () => {
     // Delete dsa-tracker-data from localStorage
     removeFromLocalStorage('dsa-tracker-data');
     
@@ -204,7 +299,18 @@ export const DSAProvider = ({ children }) => {
       platform: [],
     });
     setSearchQuery('');
-  }, []);
+
+    // Reset in Firestore if user is authenticated
+    if (user && user.uid) {
+      try {
+        await resetProgressInFirestore(user.uid);
+        toast.success('Progress reset successfully');
+      } catch (error) {
+        console.error('Error resetting progress in Firestore:', error);
+        toast.error('Failed to reset progress on server');
+      }
+    }
+  }, [user]);
 
   // Export data
   const exportData = useCallback(() => {
@@ -297,6 +403,8 @@ export const DSAProvider = ({ children }) => {
     completedProblem,
     shareQuote,
     userName,
+    user,
+    isSyncLoading,
 
     // Actions
     toggleComplete,

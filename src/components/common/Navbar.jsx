@@ -3,16 +3,19 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import useTheme from '../../hooks/useTheme';
 import { useDSA } from '../../hooks/useDSA';
+import { useAuth } from '../../hooks/useAuth';
 
 /**
  * Navbar Component
- * Top navigation bar with branding and theme toggle
+ * Top navigation bar with branding, theme toggle, and user profile
  */
 function Navbar() {
   const { toggleTheme, isDark } = useTheme();
   const { getOverallProgress } = useDSA();
+  const { user, logout } = useAuth();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const progress = getOverallProgress();
 
@@ -23,6 +26,15 @@ function Navbar() {
     { path: '/resources', label: 'Resources', icon: '🔗' },
     { path: '/settings', label: 'Settings', icon: '⚙️' },
   ];
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setUserMenuOpen(false);
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
 
   return (
     <>
@@ -108,6 +120,67 @@ function Navbar() {
                 </svg>
               )}
             </motion.button>
+
+            {/* User Profile Dropdown */}
+            {user && (
+              <div className="relative ml-2">
+                <motion.button
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-dark-border transition-colors flex items-center gap-2"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  title="User menu"
+                >
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt={user.displayName}
+                      className="w-7 h-7 rounded-full"
+                    />
+                  ) : (
+                    <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold">
+                      {user.displayName?.charAt(0).toUpperCase() || 'U'}
+                    </div>
+                  )}
+                </motion.button>
+
+                {/* User Menu Dropdown */}
+                {userMenuOpen && (
+                  <motion.div
+                    className="absolute right-0 mt-2 w-48 bg-white dark:bg-dark-card rounded-lg shadow-lg border border-slate-200 dark:border-dark-border overflow-hidden z-50"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                  >
+                    {/* User info */}
+                    <div className="px-4 py-3 border-b border-slate-200 dark:border-dark-border">
+                      <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">
+                        {user.displayName || 'User'}
+                      </p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                        {user.email}
+                      </p>
+                    </div>
+
+                    {/* Menu items */}
+                    <div className="py-2">
+                      <Link to="/settings" onClick={() => setUserMenuOpen(false)}>
+                        <div className="px-4 py-2 hover:bg-slate-100 dark:hover:bg-dark-border text-sm text-slate-700 dark:text-slate-300 cursor-pointer transition-colors">
+                          ⚙️ Settings
+                        </div>
+                      </Link>
+                      
+                      <button
+                        onClick={handleLogout}
+                        className="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-dark-border text-sm text-red-600 dark:text-red-400 cursor-pointer transition-colors border-t border-slate-200 dark:border-dark-border"
+                      >
+                        🚪 Logout
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </nav>
