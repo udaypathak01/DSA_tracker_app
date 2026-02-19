@@ -143,36 +143,58 @@ export const videoSolutions = {
   "queue-008": "https://youtu.be/_fFOfmJn298?si=zsP2MpnISHj6b_z2",
 
   //treee video data - add more as needed
-"tree-001": "https://youtu.be/O0GEkNPdKxA?si=OrQBL6g3VRUpMVPC", // Inorder Traversal
-"tree-002": "https://youtu.be/rlltTYCEjjE?si=HuvuNSRBsbSo4M1e", // Preorder Traversal
-"tree-003": "https://youtu.be/HV2gk5mOon8?si=i6Z4oZiK_4rHy5eE", // Postorder Traversal
-"tree-004": "https://youtu.be/EoAsWbO7sqg?si=Tu3vFnPwxfN8qH_v", // Level Order Traversal
-"tree-005": "https://youtu.be/3OXWEdlIGl4?si=0VSqQuXzaYkUV7js", // Zigzag Level Order Traversal
-"tree-006": "https://youtu.be/eD3tmO66aBA?si=HBbxstJqqNtZmz3C", // Maximum Depth of Binary Tree
-"tree-007": "https://youtu.be/0lXurI-s-pg?si=QRn9CzFn3M4JUiJJ", // Minimum Depth of Binary Tree
-"tree-008": "https://youtu.be/Rezetez59Nk?si=708UQDhgYWGkqz11", // Diameter of Binary Tree
-"tree-009": "https://youtu.be/nKggNAiEpBE?si=Z48NBPJmXjwMi7f7", // Check if Tree is Mirror
-"tree-010": "https://youtu.be/ck23lNqbLjI?si=ASNmsiZ6zibfgaaT", // Invert Binary Tree
-"tree-011": "https://youtu.be/_-QHfMDde90?si=mGBJvL0DPHuT8oCU", // Lowest Common Ancestor
-"tree-012": "https://youtu.be/7Y5DNwjjDMw?si=121arTzjVv5do6X3", // Check if Root to Leaf Path Sum Exists
-"tree-013": "https://youtu.be/AWJD__CfM6A?si=_BiUMdCzZctnjuIU", // Find All Root to Leaf Paths
-"tree-014": "https://youtu.be/WszrfSwMz58?si=9OuJtDu_eYyEYU1C", // Maximum Path Sum
-"tree-015": "https://youtu.be/aZNaLrVebKQ?si=SV0tYIVdQlQiZaaS", // Construct Tree from Inorder and Preorder
-"tree-016": "https://youtu.be/LgLRTaEMRVc?si=ompcxLfHyKakahIN", // Construct Tree from Inorder and Postorder
-"tree-017": "https://youtu.be/-YbXySKJsX8?si=FB53YB__ZMHPWFps", // Serialize and Deserialize Binary Tree
-"tree-018": "https://youtu.be/KV4mRzTjlAk?si=iAMCsgvR74vZ6JlV", // Left View of Binary Tree
-"tree-019": "https://youtu.be/BnOjzXe6J-Y?si=-04B6_qivke0LQZs", // Right View of Binary Tree
-"tree-020": "https://youtu.be/Et9OCDNvJ78?si=kaLuhD70bNKcYPHh", // Top View of Binary Tree
-"tree-021": "https://youtu.be/0FtVY6I4pB8?si=4tUxlUg31lZY272P", // Bottom View of Binary Tree
-"tree-022": "https://youtu.be/q_a6lpbKJdw?si=4vXwHeUoU0KotcQQ", // Vertical Order Traversal
-"tree-023": "https://youtu.be/0ca1nvR0be4?si=PQ2L-9g_usq6JZ59", // Boundary Traversal
-"tree-024": "https://youtu.be/NTF7sDU0IWA?si=_iflajPiRN-0XAKY", // Diagonal Traversal
-"tree-025": "https://youtu.be/Yt50Jfbd8Po?si=xmcEy3rekCVQL4zy", // Check if Tree is Balanced
-"tree-026": "https://youtu.be/BhuvF_-PWS0?si=-QxU1IT-fG5ouaxu", // Check if Two Trees are Identical
-"tree-027": "https://youtu.be/GZ8g8KdavUo?si=FEL7YeTFl0sLpQOb", // Check if Tree is Subtree
-"tree-028": "https://youtu.be/RGDsjGz5MGk?si=07nN1qSkL8ikzMoz", // Sum of Left Leaves
-"tree-029": "https://youtu.be/fnmisPM6cVo?si=ubH3sXs31t6si2cR", // Check Children Sum Property
-"tree-030": "https://youtu.be/sWf7k1x9XR4?si=BZLkf2D-RmXzfwBe", // Convert Binary Tree to Doubly Linked List
+  "tree-001": "https://youtu.be/O0GEkNPdKxA?si=OrQBL6g3VRUpMVPC", // Inorder Traversal
+  "tree-002": "https://youtu.be/rlltTYCEjjE?si=HuvuNSRBsbSo4M1e", // Preorder Traversal
+  "tree-003": "https://youtu.be/HV2gk5mOon8?si=i6Z4oZiK_4rHy5eE", // Postorder Traversal
+  "tree-004": "https://youtu.be/EoAsWbO7sqg?si=Tu3vFnPwxfN8qH_v", // Level Order Traversal
+  "tree-005": "https://youtu.be/3OXWEdlIGl4?si=0VSqQuXzaYkUV7js", // Zigzag Level Order Traversal
+  "tree-006": "https://youtu.be/eD3tmO66aBA?si=HBbxstJqqNtZmz3C", // Maximum Depth of Binary Tree
+  "tree-007": "https://youtu.be/0lXurI-s-pg?si=QRn9CzFn3M4JUiJJ", // Minimum Depth of Binary Tree
+  "tree-008": "https://youtu.be/Rezetez59Nk?si=708UQDhgYWGkqz11", // Diameter of Binary Tree
+  "tree-009": "https://youtu.be/nKggNAiEpBE?si=Z48NBPJmXjwMi7f7", // Check if Tree is Mirror
+  "tree-010": "https://youtu.be/ck23lNqbLjI?si=ASNmsiZ6zibfgaaT", // Invert Binary Tree
+  "tree-011": "https://youtu.be/_-QHfMDde90?si=mGBJvL0DPHuT8oCU", // Lowest Common Ancestor
+  "tree-012": "https://youtu.be/7Y5DNwjjDMw?si=121arTzjVv5do6X3", // Check if Root to Leaf Path Sum Exists
+  "tree-013": "https://youtu.be/AWJD__CfM6A?si=_BiUMdCzZctnjuIU", // Find All Root to Leaf Paths
+  "tree-014": "https://youtu.be/WszrfSwMz58?si=9OuJtDu_eYyEYU1C", // Maximum Path Sum
+  "tree-015": "https://youtu.be/aZNaLrVebKQ?si=SV0tYIVdQlQiZaaS", // Construct Tree from Inorder and Preorder
+  "tree-016": "https://youtu.be/LgLRTaEMRVc?si=ompcxLfHyKakahIN", // Construct Tree from Inorder and Postorder
+  "tree-017": "https://youtu.be/-YbXySKJsX8?si=FB53YB__ZMHPWFps", // Serialize and Deserialize Binary Tree
+  "tree-018": "https://youtu.be/KV4mRzTjlAk?si=iAMCsgvR74vZ6JlV", // Left View of Binary Tree
+  "tree-019": "https://youtu.be/BnOjzXe6J-Y?si=-04B6_qivke0LQZs", // Right View of Binary Tree
+  "tree-020": "https://youtu.be/Et9OCDNvJ78?si=kaLuhD70bNKcYPHh", // Top View of Binary Tree
+  "tree-021": "https://youtu.be/0FtVY6I4pB8?si=4tUxlUg31lZY272P", // Bottom View of Binary Tree
+  "tree-022": "https://youtu.be/q_a6lpbKJdw?si=4vXwHeUoU0KotcQQ", // Vertical Order Traversal
+  "tree-023": "https://youtu.be/0ca1nvR0be4?si=PQ2L-9g_usq6JZ59", // Boundary Traversal
+  "tree-024": "https://youtu.be/NTF7sDU0IWA?si=_iflajPiRN-0XAKY", // Diagonal Traversal
+  "tree-025": "https://youtu.be/Yt50Jfbd8Po?si=xmcEy3rekCVQL4zy", // Check if Tree is Balanced
+  "tree-026": "https://youtu.be/BhuvF_-PWS0?si=-QxU1IT-fG5ouaxu", // Check if Two Trees are Identical
+  "tree-027": "https://youtu.be/GZ8g8KdavUo?si=FEL7YeTFl0sLpQOb", // Check if Tree is Subtree
+  "tree-028": "https://youtu.be/RGDsjGz5MGk?si=07nN1qSkL8ikzMoz", // Sum of Left Leaves
+  "tree-029": "https://youtu.be/fnmisPM6cVo?si=ubH3sXs31t6si2cR", // Check Children Sum Property
+  "tree-030": "https://youtu.be/sWf7k1x9XR4?si=BZLkf2D-RmXzfwBe", // Convert Binary Tree to Doubly Linked List
+
+  "heap-001": "https://youtu.be/Qf-TDPr0nYw?si=oRhCi09rZtxEk7pk", // Implement Min Heap
+  "heap-002": "https://youtu.be/cI0shWNnB4o?si=3cD8ZeqM2u3DzeBW", // Kth Largest Element
+  "heap-003": "https://youtu.be/tmH8nOmO_m4?si=6ccFq-S6iU8H2aDX", // Kth Smallest Element
+  "heap-004": "", // Find Median from Data Stream
+  "heap-005": "", // Top K Frequent Elements
+  "heap-006": "", // K Closest Points to Origin
+  "heap-007": "", // Merge K Sorted Lists
+  "heap-008": "", // Heap Sort
+  "heap-009": "", // Reorganize String
+  "heap-010": "", // Find K Pairs with Smallest Sums
+  "heap-011": "", // Minimum Cost to Connect Ropes
+  "heap-012": "", // K Most Frequent Words
+  "heap-013": "", // Sliding Window Median
+  "heap-014": "", // Task Scheduler
+  "heap-015": "", // Design Twitter
+  "heap-016": "", // Smallest Range Covering K Lists
+  "heap-017": "", // Ugly Number II
+  "heap-018": "", // IPO (Max Capital)
+  "heap-019": "", // Minimum Operations to Halve Array Sum
+  "heap-020": "", // Furthest Building You Can Reach
+
 
 };
 

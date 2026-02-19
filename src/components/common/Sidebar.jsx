@@ -11,6 +11,9 @@ function Sidebar() {
   const navItems = [
     { path: '/', label: 'Dashboard', icon: '📊' },
     { path: '/topics', label: 'Topics', icon: '📚' },
+    { path: '/love-bubber-sheet', label: "Love Bubber's DSA", icon: '💚' },
+    { path: '/kunal-bootcamp', label: "Kunal's Bootcamp", icon: '🎓' },
+    { path: '/striver-a2z', label: "Striver's A2Z", icon: ' 🚀' },
     { path: '/resources', label: 'Resources', icon: '🔗' },
     { path: '/blog', label: 'Blog', icon: '✍️' },
     { path: '/settings', label: 'Settings', icon: '⚙️' },
