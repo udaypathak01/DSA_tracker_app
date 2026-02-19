@@ -54,6 +54,16 @@ const QuestionCard = memo(function QuestionCard({ question }) {
     }
   };
 
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(question.link);
+      toast.success('Link copied to clipboard! 📋');
+    } catch (error) {
+      console.error('Failed to copy link:', error);
+      toast.error('Failed to copy link');
+    }
+  };
+
   return (
     <motion.div
       className="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-lg p-1 sm:p-2 md:p-4 flex items-center gap-1 sm:gap-2 md:gap-3 hover:shadow-md transition-shadow"
@@ -183,17 +193,15 @@ const QuestionCard = memo(function QuestionCard({ question }) {
         )}
 
         {/* Link Button */}
-        <motion.a
-          href={question.link}
-          target="_blank"
-          rel="noopener noreferrer"
+        <motion.button
+          onClick={handleCopyLink}
           className="p-1 sm:p-1.5 md:p-2 rounded hover:bg-slate-100 dark:hover:bg-dark-border transition-colors text-xs sm:text-sm md:text-base"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          title="Open in new tab"
+          title="Copy link to clipboard"
         >
           🔗
-        </motion.a>
+        </motion.button>
       </div>
     </motion.div>
   );

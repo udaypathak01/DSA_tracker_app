@@ -59,6 +59,7 @@ function ShareModal({ isOpen, problem, streak, quote, userName, onClose }) {
         difficulty: problem.difficulty,
         streak,
         topic: problem.topic,
+        link: problem.link,
       });
 
       const copied = await copyToClipboard(caption);
@@ -85,6 +86,7 @@ function ShareModal({ isOpen, problem, streak, quote, userName, onClose }) {
         difficulty: problem.difficulty,
         streak,
         topic: problem.topic,
+        link: problem.link,
       });
 
       const copied = await copyToClipboard(caption);

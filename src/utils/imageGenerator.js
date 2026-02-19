@@ -217,11 +217,11 @@ export const copyImageToClipboard = async (element, options = {}) => {
 
 /**
  * Generate LinkedIn share caption
- * @param {Object} problemData - Problem information
+ * @param {Object} problemData - Problem information with title, difficulty, topic, link
  * @returns {string} Share caption
  */
 export const generateLinkedInCaption = (problemData) => {
-  const { title, difficulty, streak, topic, tags } = problemData;
+  const { title, difficulty, streak, topic, link, tags } = problemData;
   
   const difficultyEmoji = {
     Easy: '🟢',
@@ -229,30 +229,20 @@ export const generateLinkedInCaption = (problemData) => {
     Hard: '🔴',
   }[difficulty] || '🔥';
 
-  const hashtags = [
-    '#DSA',
-    '#DataStructuresAndAlgorithms',
-    '#Coding',
-    '#PlacementPrep',
-    '#CodingInterview',
-    '#LeetCode',
-    '#DeveloperJourney',
-  ];
-
-  // Add topic-specific hashtags
-  if (tags && Array.isArray(tags)) {
-    tags.slice(0, 3).forEach(tag => {
-      const hashtagName = tag.replace(/\s+/g, '');
-      hashtags.push(`#${hashtagName}`);
-    });
+  // Build caption with the new format
+  let caption = `🚀 Solving DSA with DSAOrbit\n\n`;
+  caption += `🧠 Problem: ${title}\n`;
+  caption += `${difficultyEmoji} Difficulty: ${difficulty}\n`;
+  caption += `📚 Topic: ${topic || 'General'}\n\n`;
+  
+  if (link) {
+    caption += `Practice it here:\n${link}\n\n`;
   }
+  
+  caption += `Track your progress: https://dsaorbit.vercel.app\n\n`;
+  caption += `#DSA #Coding #PlacementPrep`;
 
-  return `Just solved ${title} ${difficultyEmoji}
-
-${streak ? `${streak} Day Streak 🚀` : '✅ Completed'}
-${topic ? `Topic: ${topic}` : ''}
-
-${hashtags.join(' ')}`;
+  return caption;
 };
 
 /**
