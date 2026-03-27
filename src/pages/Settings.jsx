@@ -154,10 +154,17 @@ function Settings() {
             <p className="text-xs text-slate-500 dark:text-slate-500">
               Created by{" "}
               <a
-                href="https://www.linkedin.com/in/uday-pathak-b88215324?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                href="https://www.linkedin.com/in/prachi-mishra-3b214a295?utm_source=share_via&utm_content=profile&utm_medium=member_android"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
               >
-                Uday Pathak
+                Prachi Mishra
+              </a>
+             <span> and </span>
+              <a
+                href="https://www.linkedin.com/in/rashi-singh-293988214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                  Rashi Singh
               </a>
             </p>
             <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">

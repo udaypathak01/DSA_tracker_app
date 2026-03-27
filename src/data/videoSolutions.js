@@ -1,7 +1,7 @@
 /**
  * Video Solutions Data
  * Maps question IDs to video solution URLs with metadata
- * Add new entries for questions that have video solutions
+ * Add new entrees for questions that have video solutions
  */
 
 export const videoSolutions = {

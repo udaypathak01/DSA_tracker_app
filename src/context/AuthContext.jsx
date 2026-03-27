@@ -31,7 +31,23 @@ export const AuthProvider = ({ children }) => {
         if (firebaseUser) {
           // User is logged in - create or update user document in Firestore
           await initializeUserDocument(firebaseUser);
-          setUser(firebaseUser);
+          
+          // Fetch Firestore user data to get photoURL and other stored data
+          const userRef = doc(db, 'users', firebaseUser.uid);
+          const userSnap = await getDoc(userRef);
+          
+          if (userSnap.exists()) {
+            const firestoreData = userSnap.data();
+            // Merge Firebase auth data with Firestore data
+            const mergedUser = {
+              ...firebaseUser,
+              displayName: firestoreData.displayName || firebaseUser.displayName,
+              photoURL: firestoreData.photoURL || firebaseUser.photoURL || null,
+            };
+            setUser(mergedUser);
+          } else {
+            setUser(firebaseUser);
+          }
         } else {
           // User is logged out
           setUser(null);
@@ -76,10 +92,14 @@ export const AuthProvider = ({ children }) => {
         await setDoc(userRef, newUserData);
         console.log('User document created in Firestore');
       } else {
-        // Existing user - update last login timestamp
+        // Existing user - update profile data from Google/GitHub and last login timestamp
         await setDoc(
           userRef,
-          { lastLoginAt: serverTimestamp() },
+          {
+            displayName: firebaseUser.displayName || 'User',
+            photoURL: firebaseUser.photoURL || null,
+            lastLoginAt: serverTimestamp(),
+          },
           { merge: true }
         );
       }
