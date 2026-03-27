@@ -19,6 +19,7 @@ export const TOPICS = [
   'Sliding Window',
   'Two Pointer',
   'Bit Manipulation',
+  'Tree',
   'Interview Problems',
 ];
 

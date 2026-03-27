@@ -7013,16 +7013,16 @@ export const sampleQuestions = [
     notes: '',
     completedDate: null,
   },
-  // ==================== TRIE (10 questions) ====================
+  // ==================== tree (10 questions) ====================
 
   {
-    id: 'trie-001',
-    topic: 'Trie',
+    id: 'tree-001',
+    topic: 'tree',
     algorithm: 'Implementation',
-    title: 'Implement Trie (Prefix Tree)',
+    title: 'Implement tree (Prefix Tree)',
     difficulty: 'Medium',
     platform: 'LeetCode',
-    link: 'https://leetcode.com/problems/implement-trie-prefix-tree/description/',
+    link: 'https://leetcode.com/problems/implement-tree-prefix-tree/description/',
     companies: ['Amazon', 'Google', 'Meta', 'Microsoft'],
     completed: false,
     favorite: false,
@@ -7031,8 +7031,8 @@ export const sampleQuestions = [
   },
 
   {
-    id: 'trie-002',
-    topic: 'Trie',
+    id: 'tree-002',
+    topic: 'tree',
     algorithm: 'Implementation',
     title: 'Design Add and Search Words Data Structure',
     difficulty: 'Medium',
@@ -7046,8 +7046,8 @@ export const sampleQuestions = [
   },
 
   {
-    id: 'trie-003',
-    topic: 'Trie',
+    id: 'tree-003',
+    topic: 'tree',
     algorithm: 'Prefix',
     title: 'Longest Common Prefix',
     difficulty: 'Easy',
@@ -7061,8 +7061,8 @@ export const sampleQuestions = [
   },
 
   {
-    id: 'trie-004',
-    topic: 'Trie',
+    id: 'tree-004',
+    topic: 'tree',
     algorithm: 'Prefix',
     title: 'Replace Words',
     difficulty: 'Medium',
@@ -7076,9 +7076,9 @@ export const sampleQuestions = [
   },
 
   {
-    id: 'trie-005',
-    topic: 'Trie',
-    algorithm: 'Backtracking + Trie',
+    id: 'tree-005',
+    topic: 'tree',
+    algorithm: 'Backtracking + tree',
     title: 'Word Search II',
     difficulty: 'Hard',
     platform: 'LeetCode',
@@ -7091,9 +7091,9 @@ export const sampleQuestions = [
   },
 
   {
-    id: 'trie-006',
-    topic: 'Trie',
-    algorithm: 'Bitwise Trie',
+    id: 'tree-006',
+    topic: 'tree',
+    algorithm: 'Bitwise tree',
     title: 'Maximum XOR of Two Numbers in an Array',
     difficulty: 'Medium',
     platform: 'LeetCode',
@@ -7106,8 +7106,8 @@ export const sampleQuestions = [
   },
 
   {
-    id: 'trie-007',
-    topic: 'Trie',
+    id: 'tree-007',
+    topic: 'tree',
     algorithm: 'Prefix Counting',
     title: 'Map Sum Pairs',
     difficulty: 'Medium',
@@ -7121,8 +7121,8 @@ export const sampleQuestions = [
   },
 
   {
-    id: 'trie-008',
-    topic: 'Trie',
+    id: 'tree-008',
+    topic: 'tree',
     algorithm: 'Search Suggestion',
     title: 'Search Suggestions System',
     difficulty: 'Medium',
@@ -7136,8 +7136,8 @@ export const sampleQuestions = [
   },
 
   {
-    id: 'trie-009',
-    topic: 'Trie',
+    id: 'tree-009',
+    topic: 'tree',
     algorithm: 'Prefix Validation',
     title: 'Implement Magic Dictionary',
     difficulty: 'Medium',
@@ -7151,8 +7151,8 @@ export const sampleQuestions = [
   },
 
   {
-    id: 'trie-010',
-    topic: 'Trie',
+    id: 'tree-010',
+    topic: 'tree',
     algorithm: 'Advanced',
     title: 'Stream of Characters',
     difficulty: 'Hard',

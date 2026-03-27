@@ -197,7 +197,7 @@ src/
 - **Lines of Code**: 1000+
 - **Components**: 4
 - **Custom Hook**: 1
-- **Resource Data**: 18 entries
+- **Resource Data**: 18 entrees
 - **Filter Options**: 20+
 - **Responsive Breakpoints**: 3
 - **Animations**: 10+

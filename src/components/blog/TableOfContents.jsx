@@ -29,8 +29,8 @@ function TableOfContents({ content }) {
   useEffect(() => {
     // Intersection Observer for active section highlighting
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      (entrees) => {
+        entrees.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
           }

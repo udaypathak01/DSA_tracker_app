@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useTheme from '../../hooks/useTheme';
 import { useDSA } from '../../hooks/useDSA';
 import { useAuth } from '../../hooks/useAuth';
@@ -16,6 +16,7 @@ function Navbar() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const progress = getOverallProgress();
 
@@ -35,6 +36,11 @@ function Navbar() {
       console.error('Logout error:', error);
     }
   };
+
+  // Reset image error when user changes
+  useEffect(() => {
+    setImageError(false);
+  }, [user?.uid]);
 
   return (
     <>
@@ -131,11 +137,12 @@ function Navbar() {
                   whileTap={{ scale: 0.95 }}
                   title="User menu"
                 >
-                  {user.photoURL ? (
+                  {user.photoURL && !imageError ? (
                     <img
                       src={user.photoURL}
                       alt={user.displayName}
-                      className="w-7 h-7 rounded-full"
+                      className="w-7 h-7 rounded-full object-cover"
+                      onError={() => setImageError(true)}
                     />
                   ) : (
                     <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold">
