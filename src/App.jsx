@@ -12,6 +12,8 @@ import Resources from "./pages/Resources";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import Settings from "./pages/Settings";
+import AIQuizGenerator from "./pages/AIQuizGenerator";
+import AIDoubSolver from "./pages/AIDoubSolver";
 import NotFound from "./pages/NotFound";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -45,6 +47,8 @@ function App() {
                         <Route path="/resources" element={<Resources />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/blog/:slug" element={<BlogDetail />} />
+                        <Route path="/ai-quiz" element={<AIQuizGenerator />} />
+                        <Route path="/ai-doubsolver" element={<AIDoubSolver />} />
                         <Route path="/settings" element={<Settings />} />
                         <Route path="*" element={<NotFound />} />
                       </Routes>
