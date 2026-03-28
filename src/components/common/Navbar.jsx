@@ -24,6 +24,8 @@ function Navbar() {
     { path: '/', label: 'Dashboard', icon: '📊' },
     { path: '/topics', label: 'Topics', icon: '📚' },
     { path: '/blog', label: 'Blog', icon: '📝' },
+    { path: '/ai-quiz', label: 'AI Quiz', icon: '✨' },
+    { path: '/ai-doubsolver', label: 'AI Doubt', icon: '🤖' },
     { path: '/resources', label: 'Resources', icon: '🔗' },
     { path: '/settings', label: 'Settings', icon: '⚙️' },
   ];
